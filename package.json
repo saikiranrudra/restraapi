@@ -1,0 +1,30 @@
+{
+  "name": "restraapi",
+  "version": "1.0.0",
+  "description": "API for restaurant web app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "NODE_ENV=development nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saikiranrudra/restraapi.git"
+  },
+  "author": "Saikiran Rudra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saikiranrudra/restraapi/issues"
+  },
+  "homepage": "https://github.com/saikiranrudra/restraapi#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.5",
+    "morgan": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
