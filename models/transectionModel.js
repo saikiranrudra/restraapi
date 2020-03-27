@@ -19,10 +19,14 @@ const transectionModel = new mongoose.Schema({
 		type: Number,
 		require: [true, "transection must have total price"]
 	},
-	paymentId: String,
+	paymentId: {
+		type: String,
+		default: null
+	},
 	paymentMode: {
 		type: String,
-		enum: ["online", "offline"]
+		enum: ["online", "offline"],
+		default: null
 	},
 	paymentStatus: {
 		type: String,

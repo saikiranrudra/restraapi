@@ -21,7 +21,7 @@ exports.loginUser = catchAsync(async (req, res, next) => {
 	const user = await User.findOne({ email, name });
 
 	if(user) {
-		const token = signToken(user._id);
+		const token = signToken({id: user._id});
 		return res.status(200).json({
 			status: "success",
 			name: user.name,
@@ -33,7 +33,7 @@ exports.loginUser = catchAsync(async (req, res, next) => {
 	// 3) if user dosnt exist
 	if(position) {
 		const newUser = await User.create({ email, name, position });
-		const token = signToken(newUser._id);
+		const token = signToken({id: newUser._id});
 		return res.status(201).json({
 			status: "success",
 			name: newUser.name,
@@ -43,10 +43,12 @@ exports.loginUser = catchAsync(async (req, res, next) => {
 	}
 
 	const newUser = await User.create({ email, name });
-	const token = signToken(newUser._id);
+	const token = signToken({id: newUser._id});
 	res.status(201).json({
 		status: "success",
-		token
+		name: newUser.name,
+		token,
+		position: newUser.position,
 	})	
 	
 })
