@@ -19,7 +19,7 @@ exports.createItem = catchAsync(async (req, res, next) => {
 		img,
 		visibility
 	});
-
+	console.log(req.headers);
 	res.status(201).json({
 		status: 'success',
 		message: 'item created successfully',
