@@ -1,19 +1,19 @@
 const express = require('express');
 
-const Auth = require('./../middlewars/auth');
+const auth = require('./../middlewars/auth');
 const itemController = require('./../controllers/itemController');
 
 const router = express.Router();
 
 router
 	.route('/')
-	.post(Auth, itemController.createItem)
-	.get(Auth, itemController.getAllItems);
+	.post(auth, itemController.createItem)
+	.get(auth, itemController.getAllItems);
 
 router
 	.route('/:id')
-	.get(Auth, itemController.getSingleitem)
-	.patch(Auth, itemController.updateItem)
-	.delete(Auth, itemController.deleteItem);
+	.get(auth, itemController.getSingleitem)
+	.patch(auth, itemController.updateItem)
+	.delete(auth, itemController.deleteItem);
 
 module.exports = router;
