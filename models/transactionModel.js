@@ -1,23 +1,25 @@
 const mongoose = require('mongoose');
 
-const transectionModel = new mongoose.Schema({
+const transactionModel = new mongoose.Schema({
 	userId: {
-		type: mongoose.ObjectId,
-		require: [true, "every transection must have a user"]
+		type: mongoose.Schema.Types.ObjectId,
+		require: [true, 'every transection must have a user']
 	},
-	items: [{
-		itemId: { 
-			type: mongoose.ObjectId,
-			require: [true, "item must have a items id"]
-		}, 
-		quantity: {
-			type: Number,
-			min: [1, "quantity must be minimum one"]
-		},
-	}],
+	items: [
+		{
+			itemId: {
+				type: mongoose.Schema.Types.ObjectId,
+				require: [true, 'item must have a items id']
+			},
+			quantity: {
+				type: Number,
+				min: [1, 'quantity must be minimum one']
+			}
+		}
+	],
 	total: {
 		type: Number,
-		require: [true, "transection must have total price"]
+		require: [true, 'transection must have total price']
 	},
 	paymentId: {
 		type: String,
@@ -25,14 +27,14 @@ const transectionModel = new mongoose.Schema({
 	},
 	paymentMode: {
 		type: String,
-		enum: ["online", "offline"],
+		enum: ['online', 'offline'],
 		default: null
 	},
 	paymentStatus: {
 		type: String,
-		enum: ["success", "failed", "pending"],
-		default: "pending"
+		enum: ['success', 'failed', 'pending'],
+		default: 'pending'
 	}
 });
 
-module.exports = mongoose.model('Transections', transectionModel);
+module.exports = mongoose.model('Transaction', transactionModel);
