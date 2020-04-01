@@ -27,8 +27,7 @@ const transactionModel = new mongoose.Schema({
 	},
 	paymentMode: {
 		type: String,
-		enum: ['online', 'offline'],
-		default: null
+		enum: ['online', 'offline']
 	},
 	paymentStatus: {
 		type: String,
