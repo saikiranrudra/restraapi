@@ -3,7 +3,7 @@ const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/AppError');
 
 //GET ALL DOCUEMNTS
-exports.getAllDocuments = catchAsync(async (req, res, next) => {
+exports.getAllTransaction = catchAsync(async (req, res, next) => {
 	const documents = await Transaction.find({});
 
 	//If their is no document
@@ -18,7 +18,7 @@ exports.getAllDocuments = catchAsync(async (req, res, next) => {
 });
 
 //CREATE DOCUMENT
-exports.createDocument = catchAsync(async (req, res, next) => {
+exports.createTransaction = catchAsync(async (req, res, next) => {
 	//For calculating total
 	const totalPrice = req.body.items.map((el) => el.price * el.quantity);
 	const totalSum = totalPrice.reduce((a, b) => a + b, 0);
@@ -45,7 +45,7 @@ exports.createDocument = catchAsync(async (req, res, next) => {
 });
 
 //GET DOCUMENT
-exports.getAllDocument = catchAsync(async (req, res, next) => {
+exports.getTransaction = catchAsync(async (req, res, next) => {
 	const documents = await Transaction.findById(req.params.id);
 
 	//If their is no document
@@ -60,7 +60,7 @@ exports.getAllDocument = catchAsync(async (req, res, next) => {
 });
 
 //UPDATE DOCUMENT
-exports.updateDocument = catchAsync(async (req, res, next) => {
+exports.updateTransaction = catchAsync(async (req, res, next) => {
 	const result = await Transaction.findByIdAndUpdate(req.params.id, req.body);
 
 	res.status(200).json({
