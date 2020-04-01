@@ -9,6 +9,7 @@ const cors = require('cors');
 const userRouter = require('./routes/userRoutes');
 const itemRouter = require('./routes/itemRoutes');
 const transactionRoute = require('./routes/transactionRoute');
+const billRoute = require('./routes/billRoute');
 
 const app = express();
 if (process.env.NODE_ENV === 'development') {
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/items', itemRouter);
 app.use('/api/v1/transaction', transactionRoute);
+app.use('/api/v1/bill', billRoute);
 
 // if route dosnt exist
 app.all('*', (req, res, next) => {
