@@ -2,22 +2,22 @@ const Transaction = require('./../models/transactionModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/AppError');
 
-//GET ALL DOCUEMNTS
-exports.getAllTransaction = catchAsync(async (req, res, next) => {
-	const documents = await Transaction.find({});
+//GET ALL TRANSECTIONS
+// exports.getAllTransaction = catchAsync(async (req, res, next) => {
+// 	const documents = await Transaction.find({});
 
-	//If their is no document
-	if (!documents) {
-		return next(new AppError('No Document Found', 400));
-	}
+// 	//If their is no document
+// 	if (!documents) {
+// 		return next(new AppError('No Document Found', 400));
+// 	}
 
-	res.status(200).json({
-		status: 'success',
-		documents
-	});
-});
+// 	res.status(200).json({
+// 		status: 'success',
+// 		documents
+// 	});
+// });
 
-//CREATE DOCUMENT
+//CREATE Transaction
 exports.createTransaction = catchAsync(async (req, res, next) => {
 	//For calculating total
 	const totalPrice = req.body.items.map((el) => el.price * el.quantity);
@@ -31,8 +31,9 @@ exports.createTransaction = catchAsync(async (req, res, next) => {
 		};
 	});
 
-	const newItem = await Transaction.create({
+	const newTransection = await Transaction.create({
 		userId: req.userId.id,
+		tableNo: req.body.tableNo,
 		items: data,
 		total: totalSum
 	});
@@ -40,31 +41,33 @@ exports.createTransaction = catchAsync(async (req, res, next) => {
 	res.status(201).json({
 		status: 'success',
 		message: 'item created successfully',
-		item: newItem
+		item: newTransection
 	});
 });
 
-//GET DOCUMENT
+//GET Transaction
 exports.getTransaction = catchAsync(async (req, res, next) => {
-	const documents = await Transaction.findById(req.params.id);
 
+	const userId = req.userId.id;
+
+	const transaction = await Transaction.find({ userId: userId });
 	//If their is no document
-	if (!documents) {
-		return next(new AppError('No Document Found', 400));
+	if (!transaction) {
+		return next(new AppError('No Transaction Found', 404));
 	}
 
 	res.status(200).json({
 		status: 'success',
-		data: documents
+		data: transaction
 	});
 });
 
-//UPDATE DOCUMENT
-exports.updateTransaction = catchAsync(async (req, res, next) => {
-	const result = await Transaction.findByIdAndUpdate(req.params.id, req.body);
+//UPDATE Transaction
+// exports.updateTransaction = catchAsync(async (req, res, next) => {
+// 	const result = await Transaction.findByIdAndUpdate(req.params.id, req.body);
 
-	res.status(200).json({
-		status: 'success',
-		data: result
-	});
-});
+// 	res.status(200).json({
+// 		status: 'success',
+// 		data: result
+// 	});
+// });

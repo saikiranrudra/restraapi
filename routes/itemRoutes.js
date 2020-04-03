@@ -8,7 +8,7 @@ const router = express.Router();
 router
 	.route('/')
 	.post(auth, itemController.createItem)
-	.get(auth, itemController.getAllItems);
+	.get(itemController.getAllItems);
 
 router
 	.route('/:id')

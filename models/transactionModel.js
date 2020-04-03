@@ -5,6 +5,10 @@ const transactionModel = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		require: [true, 'every transection must have a user']
 	},
+	tableNo: {
+		type: Number,
+		require: [true, 'every transaction must belongs to any table']
+	},
 	items: [
 		{
 			itemId: {
@@ -31,7 +35,7 @@ const transactionModel = new mongoose.Schema({
 	},
 	paymentStatus: {
 		type: String,
-		enum: ['success', 'failed', 'pending'],
+		enum: ['success', 'pending'],
 		default: 'pending'
 	}
 });
